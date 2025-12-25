@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codex.platform.mapper.WelcomeMessageMapper">
+    <resultMap id="WelcomeMessageResultMap" type="com.codex.platform.domain.WelcomeMessage">
+        <id property="id" column="id"/>
+        <result property="content" column="content"/>
+    </resultMap>
+
+    <select id="findTopMessage" resultMap="WelcomeMessageResultMap">
+        SELECT id, content
+        FROM welcome_message
+        ORDER BY id
+        LIMIT 1
+    </select>
+</mapper>
