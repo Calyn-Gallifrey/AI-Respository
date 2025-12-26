@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.carddemo.mapper.BusinessCardSettingMapper">
+    <resultMap id="SettingMap" type="com.demo.carddemo.model.BusinessCardSetting">
+        <id column="id" property="id" />
+        <result column="card_id" property="cardId" />
+        <result column="setting_key" property="settingKey" />
+        <result column="is_visible" property="isVisible" />
+        <result column="updated_at" property="updatedAt" />
+    </resultMap>
+
+    <select id="findByCardId" parameterType="long" resultMap="SettingMap">
+        SELECT * FROM business_card_setting WHERE card_id = #{cardId}
+    </select>
+
+    <select id="findByCardIdAndKey" resultMap="SettingMap">
+        SELECT * FROM business_card_setting WHERE card_id = #{cardId} AND setting_key = #{settingKey}
+    </select>
+
+    <insert id="insertSetting" parameterType="com.demo.carddemo.model.BusinessCardSetting">
+        INSERT INTO business_card_setting(card_id, setting_key, is_visible, updated_at)
+        VALUES(#{cardId}, #{settingKey}, #{isVisible}, #{updatedAt})
+    </insert>
+
+    <update id="updateSetting" parameterType="com.demo.carddemo.model.BusinessCardSetting">
+        UPDATE business_card_setting SET is_visible=#{isVisible}, updated_at=#{updatedAt}
+        WHERE card_id=#{cardId} AND setting_key=#{settingKey}
+    </update>
+</mapper>
