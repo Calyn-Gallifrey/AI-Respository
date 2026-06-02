@@ -1,2 +1,2 @@
 # AI-Respository
-CodeX Code
+AI Everything
